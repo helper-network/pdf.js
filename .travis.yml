@@ -1,0 +1,16 @@
+sudo: required
+install:
+  - pip install --user awscli
+deploy:
+  provider: s3
+  access_key_id: AKIAIUL5JEHCD3WPHDJA
+  secret_access_key:
+    secure: be3lzpzAkJh//EUDghVz+vwgbHpiBy2hU1szO2xndJTn8SqNnEHBOkqsCPknbr/fb03RQq/rNGeNDJKL9q4icKzPfOhAOLKNmMGCOPc85rM26cxwSHwqy1Zu0hfP8EIUIliT5Kds5Y3/sVf0MqtOpaFZrfL7oqZne+uE1+anmF8cLR8RtRNKf0hJ68ZQkOEuN9KMGpCmdNbQFJIIuC5D7O9HW/Vncwk6IjJge7vO/pUxySRCI7CHaOb5YRFebUUuIGDq0mF5dz2kNSKrCtNcBN5o4ZiJlIuNKn9TNEiErrk3PVI6PgeSFxARGcM6iVhltowXL3eMhl32OfMOEQyEgbpYgghZSGyGyAcdhnofBjox2A4QY9zl4tEBxR7rGzKU72oqHq46aLCJsIXYbnHHZ6wKrqcLgPv58qIty8MX7JRCDGAlqReL7SYnLp3on485Yv7aks26mlbIAgM9dvOCakIQ2BPNa4Wt8ygZf1I6AiTsrlP8JhsoIUvdo5aLNaPicM2us6qNGPDYhPRxJFgMOz/8qkv4br7eFeSIPLYtCfYP6Hv4HKyM4d5TEwTpMn+O7BPikXLjYkSqfM3WtUBnJrqNDdHHPuGXUQ74DwYPF/d3NGskCek0crqhwDSFtgS9Zseiv1tS20A8Fb+nMQ8VHNdXH+31EVK4gLuAgCdkEss=
+  bucket: pdf.insuranceservices.io
+  local-dir: "./"
+  acl: public_read
+  on:
+    repo: helper-network/pdf.js
+
+after_deploy:
+  - aws cloudfront create-invalidation --distribution-id E3C8YHBNKFPRBJ --paths '/*'
