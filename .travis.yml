@@ -1,4 +1,10 @@
 sudo: required
+before_install:
+  - echo ""
+before_script:
+  - echo ""
+script:
+  - echo ""
 install:
   - pip install --user awscli
 deploy:
