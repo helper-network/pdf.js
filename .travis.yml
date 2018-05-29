@@ -1,7 +1,13 @@
 sudo: required
 language: php
+before_install:
+  - echo ""
 install:
   - pip install --user awscli
+before_script:
+  - echo ""
+script:
+  - echo ""
 deploy:
   provider: s3
   access_key_id: AKIAIUL5JEHCD3WPHDJA
@@ -13,5 +19,5 @@ deploy:
   on:
     repo: helper-network/pdf.js
 
-after_deploy:
+after_script:
   - aws cloudfront create-invalidation --distribution-id E3C8YHBNKFPRBJ --paths '/*'
