@@ -7,18 +7,5 @@ install:
 before_script:
   - echo ""
 script:
-  - echo ""
-
-deploy:
-  provider: s3
-  access_key_id: AKIAIUL5JEHCD3WPHDJA
-  secret_access_key:
-    secure: gvHoxIrN38Zd9IHqGLQh3QjOXPvtoC7fZca9Q4D4HammDmCRFxFMNzqhAbeHqBIXE+0os2avUl/+SdLx+hgFs2ZYb0q8pp4+mycjFYkutJsla23jd9K1s5Yte7VRh9jGrTLkpNByYeQ4j++enfiJcikqtuGVI8WcNPI/+lBN8EvYTHK5P5vnpCJnMn6eW95fZMFAEAGX+8h0WxGeDAZI8W/9Cx4Ia7JBNTDBU6LqGFrLCs1V05o8yt6o/7nfmTVKiSbeLAWlXvkdGqlV/F/k7DTDnNdHSnFM+ALTS+XEp1vJMEFlC+d6qKaRQWorpc0KwDsLJHQ8BZxQY/gyYRxkAEJ0N6UWiLbyCXpmR9IJsG6cj25kDzcbytyxiKjubKj0RnQ/bgFl1pNLSZ8k+RYGveS5acexVJI6sSvI+fokLWKBPPj5QJQdURMhHeeCLRwG3pz0Uhw3LcRF/KhpInEMr4yIJM7YVM29q8gaMu37xthnBQFWWhNb0Kp9F+NeGqDRpitXVrPFL1esJMMlwmwTzM23bFGBGIiQKnrsdAAZ+iYl4cMWOkN4f5L8PHIX4iQ3vSiIRKtoungpSUc3c9D7J8TsIDt5GcUpdYKN/0luXsOv+ojHww57QzxjSurEEw/oELCtHZKUmSg9dbtnnsLk2/8KzuUjbYppUNiYrLVg7wY=
-  bucket: pdf.insuranceservices.io
-  acl: public_read
-  region: us-west-1
-  on:
-    repo: helper-network/pdf.js
-
-after_script:
+  - aws s3 cp ./ s3://pdf.insuranceservices.io --recursive
   - aws cloudfront create-invalidation --distribution-id E3C8YHBNKFPRBJ --paths '/*'
