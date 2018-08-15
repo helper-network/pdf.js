@@ -33,11 +33,18 @@ See https://github.com/adobe-type-tools/cmap-resources
     <link rel="stylesheet" href="viewer.css">
 
     <script>
+        resizeWindow();
+        setInterval(function(){ resizeWindow(); }, 5000);
         window.addEventListener("focus", function(event) {
+            resizeWindow();
+        }, false);
+
+        function resizeWindow() {
             var evt = document.createEvent('UIEvents');
             evt.initUIEvent('resize', true, false,window,0);
             window.dispatchEvent(evt);
-        }, false);
+            console.log('Triggered focus');
+        }
     </script>
 
 
