@@ -9,5 +9,5 @@ install:
 before_script:
   - echo ""
 script:
-  - aws s3 cp ./ s3://pdf.insuranceservices.io --recursive
+  - aws s3 cp ./ s3://pdf.insuranceservices.io --recursive --cache-control max-age=0 --acl public-read
   - aws cloudfront create-invalidation --distribution-id E3C8YHBNKFPRBJ --paths '/*'
